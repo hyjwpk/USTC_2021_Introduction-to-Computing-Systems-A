@@ -1,0 +1,40 @@
+.ORIG X3000
+SHOW_STONE              LEA R0 NEWLINE
+                        TRAP x22
+                        LEA R0 ROWA
+                        TRAP x22
+                        LD R0 CHARO
+                        ADD R5 R1 #0
+                LOOPA   BRz OUTB
+                        TRAP x21
+                        ADD R5 R5 #-1
+                        BRnzp LOOPA
+                OUTB    LEA R0 NEWLINE
+                        TRAP x22
+                        LEA R0 ROWB
+                        TRAP x22
+                        LD R0 CHARO
+                        ADD R5 R2 #0
+                LOOPB   BRz OUTC
+                        TRAP x21
+                        ADD R5 R5 #-1
+                        BRnzp LOOPB
+                OUTC    LEA R0 NEWLINE
+                        TRAP x22
+                        LEA R0 ROWC
+                        TRAP x22
+                        LD R0 CHARO
+                        ADD R5 R3 #0
+                LOOPC   BRz END_OUT
+                        TRAP x21
+                        ADD R5 R5 #-1
+                        BRnzp LOOPC
+                END_OUT LEA R0 NEWLINE
+                        TRAP X22
+                        RET
+NEWLINE         .STRINGZ "n"
+ROWA            .STRINGZ "ROWA:"
+ROWB            .STRINGZ "ROWB:"
+ROWC            .STRINGZ "ROWC:" 
+CHARO           .FILL x006f
+.END
